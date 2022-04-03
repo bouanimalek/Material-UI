@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Stack, TextField, InputAdornment } from "@mui/material";
 
 export const MuiTextField = () => {
+  const [value, setValue] = useState("");
+
   return (
     <Stack spacing={4}>
       <Stack direction="row" spacing={2}>
@@ -12,7 +15,16 @@ export const MuiTextField = () => {
         <TextField label="Small secondary" size="small" color="secondary" />
       </Stack>
       <Stack direction="row" spacing={2}>
-        <TextField label="Form Input" required />
+        <TextField
+          label="Form Input"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          required
+          error={!value}
+          helperText={
+            !value ? "Required" : "Do not share your password with anyone"
+          }
+        />
         <TextField
           label="password"
           type="password"
